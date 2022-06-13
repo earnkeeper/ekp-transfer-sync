@@ -23,7 +23,7 @@ class TransferSyncService:
             topic0=TOKEN_TRANSFER_TOPIC
         )
 
-        self.decode(self, address)
+        self.decode(address)
 
     def decode(self, address):
         latest_block_number = 0
@@ -74,13 +74,13 @@ class TransferSyncService:
                         "value": 0
                     }
 
-                address_map[from_address] -= token_value
-                address_map[to_address] += token_value
+                address_map[from_address]["value"] -= token_value
+                address_map[to_address]["value"] += token_value
 
             if len(next_logs) < self.page_size:
                 break
 
-        self.__write_csv(address_map)
+        self.__write_csv(address_map.values())
 
     def __write_csv(self, records):
         my_file = open(f"addresses.csv", "w")
