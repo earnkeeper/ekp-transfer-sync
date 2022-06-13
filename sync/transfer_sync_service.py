@@ -89,6 +89,6 @@ class TransferSyncService:
 
         for record in records:
             my_file.write(f"{record['address']},")
-            my_file.write(f"{record['value']},")
+            my_file.write(f"{record['value']}\n")
 
         my_file.close()
